@@ -14,7 +14,7 @@ public class TeamsController {
 
     @RequestMapping("/teams/{code}")
     @ResponseBody
-    String retrieveTeams(@PathVariable String code) {
+    Object retrieveTeams(@PathVariable String code) {
         return teamsService.getTeams(code);
     }
 
