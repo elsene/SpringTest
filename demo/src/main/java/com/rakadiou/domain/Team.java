@@ -1,5 +1,8 @@
 package com.rakadiou.domain;
 
+import lombok.ToString;
+
+@ToString
 public class Team {
     private float id;
     private String name;
