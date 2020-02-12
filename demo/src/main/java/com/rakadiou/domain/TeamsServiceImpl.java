@@ -37,13 +37,17 @@ public class TeamsServiceImpl implements TeamsService {
             prop.load(input);
             HttpHeaders headers = new HttpHeaders();
             headers.add(prop.getProperty("app.key"), prop.getProperty("app.token"));
+          headers.setContentType(MediaType.APPLICATION_JSON);
+
             headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
             HttpEntity<String> entity = new HttpEntity<String>(headers);
 
             ObjectApi objectApi = getResultFromApi(code, entity);
-            log.info("Response Api"+objectApi.toString()+"Response User"+objectApi.getTeams().toString()+"Request"+entity);
+            log.info("Response Api" + objectApi.toString() + "Response User" +
+                    objectApi.getTeams().toString() +
+                    "Request" + entity + "Number of teams" + objectApi.getTeams().size());
 
-            return  objectApi.getTeams();
+            return objectApi.getTeams();
 
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -53,6 +57,12 @@ public class TeamsServiceImpl implements TeamsService {
 
     private ObjectApi getResultFromApi(String code, HttpEntity<String> entity) {
         ObjectApi objectApi = restTemplate.exchange("http://api.football-data.org/v2/competitions/" + code + "/teams", HttpMethod.GET, entity, ObjectApi.class).getBody();
-            return objectApi;
+        return objectApi;
     }
+    /*
+    private ObjectApi getResultFromApi(String code, HttpEntity<String> entity) {
+        ObjectApi objectApi = restTemplate.exchange("http://api.football-data.org/v2/competitions/" + code + "/teams", HttpMethod.GET, entity, ObjectApi.class).getBody();
+        return objectApi;
+    }*/
+
 }

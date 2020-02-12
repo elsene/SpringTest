@@ -9,8 +9,8 @@ import java.io.Serializable;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Team implements Serializable {
-    private int id;
+public class Area implements Serializable {
+    private Integer id;
     private String name;
-    private Area area;
+
 }
